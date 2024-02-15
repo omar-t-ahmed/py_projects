@@ -4,7 +4,7 @@ count = 0
 
 playing = input('Would you like to play? ')
 
-if playing != 'yes': 
+if playing.lower() != 'yes': 
     quit()
 
 print('Lets begin!')
@@ -33,7 +33,9 @@ if ans == '1989':
 else:
     print('incorrect')
 
-print()
+score = str(count)
+
+print('you got ' + score + '/3 correct')
 
 
 
