@@ -15,3 +15,21 @@ else:
     quit()
 
 random_num = random.randint(1, upper_bound)
+guesses = 0
+
+while True:
+    user_guess = input("Make a guess: ")
+
+    if user_guess.isdigit():
+        user_guess = int(user_guess)
+    else:
+        print('please type a number')
+        continue
+
+    if user_guess == random_num:
+        print('You got it! The number was ' + str(user_guess))
+    elif user_guess > random_num:
+        print('guess lower')
+    else:
+        print('guess higher')
+    
