@@ -26,6 +26,8 @@ while True:
         print('please type a number')
         continue
 
+    guesses += 1
+
     if user_guess == random_num:
         print('You got it! The number was', user_guess)
         break
@@ -33,6 +35,5 @@ while True:
         print('guess lower')
     else:
         print('guess higher')
-    guesses += 1
 
 print ('You got it in', guesses, 'guesses' )
