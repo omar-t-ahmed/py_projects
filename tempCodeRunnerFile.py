@@ -1,0 +1,1 @@
+Bot picked {comp_pick}
