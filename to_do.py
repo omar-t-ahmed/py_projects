@@ -19,5 +19,31 @@ class TodoList:
         else:
             print("No tasks in the list.")
 
-# if __name__ == "__main__":
-#     main()
+def main():
+    todo_list = TodoList()
+
+    while True:
+        print("\n===== Todo List Menu =====")
+        print("1. Add Task")
+        print("2. Remove Task")
+        print("3. Display Tasks")
+        print("4. Quit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            task = input("Enter task: ")
+            todo_list.add_task(task)
+        elif choice == '2':
+            task = input("Enter task to remove: ")
+            todo_list.remove_task(task)
+        elif choice == '3':
+            todo_list.display_tasks()
+        elif choice == '4':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please enter a number from 1 to 4.")
+
+if __name__ == "__main__":
+    main()
