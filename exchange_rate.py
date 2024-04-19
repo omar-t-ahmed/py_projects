@@ -12,3 +12,18 @@ def get_exchange_rate(base_currency, target_currency):
 def convert_currency(amount, base_currency, target_currency):
     rate = get_exchange_rate(base_currency, target_currency)
     return amount * rate
+
+def main():
+    amount = float(input("Enter the amount to convert: "))
+    base_currency = input("Enter the base currency (USD, EUR, GBP, JPY): ")
+    target_currency = input("Enter the target currency (USD, EUR, GBP, JPY): ")
+    
+    if base_currency not in ['USD', 'EUR', 'GBP', 'JPY'] or target_currency not in ['USD', 'EUR', 'GBP', 'JPY']:
+        print("Invalid currency.")
+        return
+
+    converted_amount = convert_currency(amount, base_currency, target_currency)
+    print(f"{amount} {base_currency} is equal to {converted_amount:.2f} {target_currency}")
+
+if __name__ == "__main__":
+    main()
