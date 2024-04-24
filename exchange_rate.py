@@ -13,19 +13,13 @@ def fetch_currency_rates(base_currency, date='latest'):
         print(f"Failed to fetch currency rates: {e}")
         return None
 
-def get_exchange_rate(base_currency, target_currency):
-    rates = {
-        'USD': 1.0,
-        'EUR': 0.95,
-        'GBP': 0.82,
-        'JPY': 133.5
-    }
-    try:
-        usd_to_base_rate = 1 / rates[base_currency]
-        base_to_target_rate = usd_to_base_rate * rates[target_currency]
-    except KeyError:
-        raise ValueError("One or both specified currencies are not supported.")
-    return base_to_target_rate
+def get_exchange_rate(base_currency, target_currency, date='latest'):
+    rates = fetch_currency_rates(base_currency, date)
+    if rates and target_currency in rates:
+        return rates[target_currency]
+    else:
+        raise ValueError(f"One or both specified currencies are not supported: {base_currency}, {target_currency}")
+
 
 def convert_currency(amount, base_currency, target_currency):
     try:
