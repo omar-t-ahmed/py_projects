@@ -1,3 +1,18 @@
+import requests
+
+def fetch_currency_rates(base_currency, date='latest'):
+    url = f"https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@{date}/v1/currencies/{base_currency}.json"
+    fallback_url = f"https://{date}.currency-api.pages.dev/v1/currencies/{base_currency}.json"
+    try:
+        response = requests.get(url)
+        if response.status_code != 200:
+            response = requests.get(fallback_url)
+        data = response.json()
+        return data['rates']
+    except Exception as e:
+        print(f"Failed to fetch currency rates: {e}")
+        return None
+
 def get_exchange_rate(base_currency, target_currency):
     rates = {
         'USD': 1.0,
