@@ -21,9 +21,9 @@ def get_exchange_rate(base_currency, target_currency, date='latest'):
         raise ValueError(f"One or both specified currencies are not supported: {base_currency}, {target_currency}")
 
 
-def convert_currency(amount, base_currency, target_currency):
+def convert_currency(amount, base_currency, target_currency, date='latest'):
     try:
-        rate = get_exchange_rate(base_currency, target_currency)
+        rate = get_exchange_rate(base_currency, target_currency, date)
     except ValueError as e:
         print(e)
         return None
