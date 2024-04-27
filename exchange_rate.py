@@ -36,12 +36,8 @@ def main():
         print("Invalid amount. Please enter a numeric value.")
         return
     
-    base_currency = input("Enter the base currency (USD, EUR, GBP, JPY): ")
-    target_currency = input("Enter the target currency (USD, EUR, GBP, JPY): ")
-
-    if base_currency not in ['USD', 'EUR', 'GBP', 'JPY'] or target_currency not in ['USD', 'EUR', 'GBP', 'JPY']:
-        print("Invalid currency.")
-        return
+    base_currency = input("Enter the base currency: ").upper()
+    target_currency = input("Enter the target currency: ").upper()
 
     converted_amount = convert_currency(amount, base_currency, target_currency)
     if converted_amount is not None:
