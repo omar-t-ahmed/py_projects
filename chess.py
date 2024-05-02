@@ -40,3 +40,7 @@ class Board:
             self.board[0][4] = King('black', 'K')
             self.board[7][3] = Queen('white', 'Q')
             self.board[7][4] = King('white', 'K')
+            
+        def print_board(self):
+            for row in self.board:
+                print(' '.join([piece.name if piece else '.' for piece in row]))
