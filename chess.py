@@ -4,7 +4,24 @@ class Piece:
         self.name = name
 
 class Pawn(Piece):
-    pass
+        def get_moves(self, position, board):
+            moves = []
+            x, y = position
+            direction = -1 if self.color == 'white' else 1
+            
+            if board[x + direction][y] is None:
+                moves.append((x + direction, y))
+                if (self.color == 'white' and x == 6) or (self.color == 'black' and x == 1):
+                    if board[x + 2 * direction][y] is None:
+                        moves.append((x + 2 * direction, y))
+
+            for dy in [-1, 1]:
+                if 0 <= y + dy < 8:
+                    target = board[x + direction][y + dy]
+                    if target and target.color != self.color:
+                        moves.append((x + direction, y + dy))
+
+            return moves
 
 class Rook(Piece):
     pass
