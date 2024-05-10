@@ -44,7 +44,20 @@ class Rook(Piece):
         return moves
 
 class Knight(Piece):
-    pass
+    def get_moves(self, position, board):
+        moves = []
+        x, y = position
+        knight_moves = [
+            (-2, -1), (-1, -2), (1, -2), (2, -1),
+            (2, 1), (1, 2), (-1, 2), (-2, 1)
+        ]
+        for dx, dy in knight_moves:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < 8 and 0 <= ny < 8:
+                if board[nx][ny] is None or board[nx][ny].color != self.color:
+                    moves.append((nx, ny))
+
+        return moves
 
 class Bishop(Piece):
     pass
