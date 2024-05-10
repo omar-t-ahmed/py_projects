@@ -60,7 +60,25 @@ class Knight(Piece):
         return moves
 
 class Bishop(Piece):
-    pass
+    def get_moves(self, position, board):
+        moves = []
+        x, y = position
+
+        directions = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            while 0 <= nx < 8 and 0 <= ny < 8:
+                if board[nx][ny] is None:
+                    moves.append((nx, ny))
+                elif board[nx][ny].color != self.color:
+                    moves.append((nx, ny))
+                    break
+                else:
+                    break
+                nx += dx
+                ny += dy
+
+        return moves
 
 class Queen(Piece):
     pass
