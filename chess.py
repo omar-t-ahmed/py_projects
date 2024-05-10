@@ -4,27 +4,44 @@ class Piece:
         self.name = name
 
 class Pawn(Piece):
-        def get_moves(self, position, board):
-            moves = []
-            x, y = position
-            direction = -1 if self.color == 'white' else 1
-            
-            if board[x + direction][y] is None:
-                moves.append((x + direction, y))
-                if (self.color == 'white' and x == 6) or (self.color == 'black' and x == 1):
-                    if board[x + 2 * direction][y] is None:
-                        moves.append((x + 2 * direction, y))
+    def get_moves(self, position, board):
+        moves = []
+        x, y = position
+        direction = -1 if self.color == 'white' else 1
+        
+        if board[x + direction][y] is None:
+            moves.append((x + direction, y))
+            if (self.color == 'white' and x == 6) or (self.color == 'black' and x == 1):
+                if board[x + 2 * direction][y] is None:
+                    moves.append((x + 2 * direction, y))
 
-            for dy in [-1, 1]:
-                if 0 <= y + dy < 8:
-                    target = board[x + direction][y + dy]
-                    if target and target.color != self.color:
-                        moves.append((x + direction, y + dy))
+        for dy in [-1, 1]:
+            if 0 <= y + dy < 8:
+                target = board[x + direction][y + dy]
+                if target and target.color != self.color:
+                    moves.append((x + direction, y + dy))
 
-            return moves
+        return moves
 
 class Rook(Piece):
-    pass
+    def get_moves(self, position, board):
+        moves = []
+        x, y = position
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            while 0 <= nx < 8 and 0 <= ny < 8:
+                if board[nx][ny] is None:
+                    moves.append((nx, ny))
+                elif board[nx][ny].color != self.color:
+                    moves.append((nx, ny))
+                    break
+                else:
+                    break
+                nx += dx
+                ny += dy
+        return moves
 
 class Knight(Piece):
     pass
