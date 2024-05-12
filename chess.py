@@ -81,27 +81,39 @@ class Bishop(Piece):
         return moves
 
 class Queen(Piece):
-        def get_moves(self, position, board):
-            moves = []
-            x, y = position
-            directions = [(-1, 0), (1, 0), (0, -1), (0, 1),
-                        (-1, -1), (-1, 1), (1, -1), (1, 1)]
-            for dx, dy in directions:
-                nx, ny = x + dx, y + dy
-                while 0 <= nx < 8 and 0 <= ny < 8:
-                    if board[nx][ny] is None:
-                        moves.append((nx, ny))
-                    elif board[nx][ny].color != self.color:
-                        moves.append((nx, ny))
-                        break
-                    else:
-                        break
-                    nx += dx
-                    ny += dy
-            return moves
+    def get_moves(self, position, board):
+        moves = []
+        x, y = position
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1),
+                    (-1, -1), (-1, 1), (1, -1), (1, 1)]
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            while 0 <= nx < 8 and 0 <= ny < 8:
+                if board[nx][ny] is None:
+                    moves.append((nx, ny))
+                elif board[nx][ny].color != self.color:
+                    moves.append((nx, ny))
+                    break
+                else:
+                    break
+                nx += dx
+                ny += dy
+        return moves
 
 class King(Piece):
-    pass
+    def get_moves(self, position, board):
+        moves = []
+        x, y = position
+        king_moves = [
+            (-1, 0), (1, 0), (0, -1), (0, 1),
+            (-1, -1), (-1, 1), (1, -1), (1, 1)
+        ]
+        for dx, dy in king_moves:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < 8 and 0 <= ny < 8:
+                if board[nx][ny] is None or board[nx][ny].color != self.color:
+                    moves.append((nx, ny))
+        return moves
 
 class Board:
         def __init__(self):
