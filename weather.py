@@ -30,3 +30,15 @@ def display_weather(data):
     print(f"Weather: {weather_desc}")
     print(f"Humidity: {humidity}%")
     print(f"Wind Speed: {wind_speed} m/s")
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python weather_app.py <city_name>")
+        return
+    
+    city_name = sys.argv[1]
+    weather_data = get_weather(city_name)
+    display_weather(weather_data)
+
+if __name__ == '__main__':
+    main()
