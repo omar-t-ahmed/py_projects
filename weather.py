@@ -1,18 +1,28 @@
 import requests
 import json
 import sys
+import logging
 
 API_KEY = 'your_openweathermap_api_key'
 BASE_URL = 'http://api.openweathermap.org/data/2.5/weather'
 
-def get_weather(city_name):
+logging.basicConfig(level=logging.INFO)
+
+def get_weather(city_name, units='imperial'):
     params = {
         'q': city_name,
         'appid': API_KEY,
-        'units': 'imperial'
+        'units': units
     }
-    response = requests.get(BASE_URL, params=params)
-    return response.json()
+    try:
+        response = requests.get(BASE_URL, params=params)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.HTTPError as http_err:
+        logging.error(f"HTTP error occurred: {http_err}")
+    except Exception as err:
+        logging.error(f"Other error occurred: {err}")
+    return None
 
 def display_weather(data):
     if data['cod'] != 200:
