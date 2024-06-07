@@ -20,3 +20,7 @@ class TaskList:
                 print(f"{index}. {task}")
         else:
             print("No tasks available.")
+
+    def clear_tasks(self):
+        self.tasks.clear()
+        print("All tasks cleared.")
