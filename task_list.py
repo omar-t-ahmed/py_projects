@@ -12,3 +12,11 @@ class TaskList:
             print(f"Task '{task}' removed.")
         else:
             print(f"Task '{task}' not found.")
+    
+    def show_tasks(self):
+        if self.tasks:
+            print("Tasks:")
+            for index, task in enumerate(self.tasks, start=1):
+                print(f"{index}. {task}")
+        else:
+            print("No tasks available.")
